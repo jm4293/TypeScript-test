@@ -1,8 +1,8 @@
-import React from 'react';
 import GlobalStyle from "./GlobalStyle";
 import {Routes, Route} from "react-router-dom";
 import Home from "./component/Home";
-import SignUp from "./component/SignUp";
+import SignUp from "./component/Login/SignUp";
+import KakaoToken from "./component/Login/KakaoToken";
 
 function App() {
     return (
@@ -10,7 +10,8 @@ function App() {
             <GlobalStyle/>
             <Routes>
                 <Route path='/' element={<Home/>}/>
-                <Route path='/Regist' element={<SignUp/>}/>
+                <Route path='/SignUp' element={<SignUp/>}/>
+                <Route path='/kakao/callback' element={<KakaoToken/>} />
             </Routes>
         </div>
     )
