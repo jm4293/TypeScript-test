@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import SignInModal from "./Login/SignInModal";
 import ReorderIcon from '@mui/icons-material/Reorder';
 
 function Home(): React.ReactElement {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const KAKAO_TOKEN = localStorage.getItem("KAKAO_TOKEN");
-
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   return (
     <Frame>
       <Header>
-        <HeaderList>JM</HeaderList>
+        <LinkStyled to='/'>JM</LinkStyled>
         <div style={{ flexGrow: "1" }}></div>
         <HeaderList>조회</HeaderList>
         <HeaderList>지도</HeaderList>
-        <LinkStyled to='/SignUp'>회원가입</LinkStyled>
+        <LinkStyled to='/register/age'>회원가입</LinkStyled>
 
         <HeaderList onClick={() => setModalOpen(true)}>로그인</HeaderList>
         
@@ -29,12 +26,14 @@ function Home(): React.ReactElement {
       </Content>
 
       <Footer>
-        <div>
-          ABOUT US
-        </div>
-        <div>
-          CONTACT US
-        </div>
+        <AboutDiv>
+          <div>ABOUT US</div>
+          <div>jm4293</div>
+        </AboutDiv>
+        <ContactDiv>
+          <div>CONTACT US</div>
+          <div>Email: dlwoals4293@gmail.com</div>
+        </ContactDiv>
       </Footer>
     </Frame>
   )
@@ -86,6 +85,16 @@ const Footer = styled.div`
   /* height: 100%; */
   /* border: 1px solid blue; */
   background-color: white;
+  display: flex;
+  justify-content: end;
+`
+
+const AboutDiv =styled.div`
+  width: 30%;
+`
+
+const ContactDiv = styled.div`
+  width: 30%;
 `
 
 export default Home;

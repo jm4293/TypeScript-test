@@ -1,6 +1,7 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { KAKAO_AUTH_URL } from "./KakaoOAuth";
+import { Link } from "react-router-dom";
 
 interface SignInModalProps {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,45 +11,62 @@ function SignInModal({ setModalOpen }: SignInModalProps): React.ReactElement {
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-      inputRef.current?.focus();
+        inputRef.current?.focus();
     }, [])
 
     return (
         <ModalOverlay>
             <ModalWrapper>
-                <CancelButton>
-                    <button onClick={() => setModalOpen(false)}>X</button>
-                </CancelButton>
-                <KakaoSignIn>
-                    <a href={KAKAO_AUTH_URL}>
-                        <KakaoSignInButton type="button"><img src="/images/kakao_login_medium_narrow.png"/></KakaoSignInButton>
-                    </a>
-                </KakaoSignIn>
-                <Line>
-                    <LeftLine></LeftLine>
-                    <MiddleOr>OR</MiddleOr>
-                    <RightLine></RightLine>
-                </Line>
-                <EmailInput>
-                    <div>이메일</div>
-                    <input ref={inputRef} type='text' placeholder='아이디(이메일)' />
-                </EmailInput>
-                <PasswordInput>
-                    <div>비밀번호</div>
-                    <input type='password' placeholder='비밀번호 입력' />
-                </PasswordInput>
-                <SigninButton>
-                    <button>로그인</button>
-                </SigninButton>
-                <SignupButton>
-                    <button>회원가입</button>
-                    <button>이메일, 비밀번호 찾기</button>
-                </SignupButton>
+                <div>
+                    <CancelButton>
+                        <button onClick={() => setModalOpen(false)}>X</button>
+                    </CancelButton>
+                </div>
+                <div>간편 로그인</div>
+                <div>
+                    <KakaoSignIn>
+                        <a href={KAKAO_AUTH_URL}>
+                            <KakaoSignInButton type="button"><img src="/images/kakao_login_medium_narrow.png" /></KakaoSignInButton>
+                        </a>
+                    </KakaoSignIn>
+                </div>
+                <div>
+                    <Line>
+                        <LeftLine></LeftLine>
+                        <MiddleOr>OR</MiddleOr>
+                        <RightLine></RightLine>
+                    </Line>
+                </div>
+                <div style={{marginTop: "10px"}}>이메일 로그인</div>
+                <Email>
+                    <EmailInput>
+                        <div>이메일</div>
+                        <EmailInputText ref={inputRef} type='text'/>
+                    </EmailInput>
+                </Email>
+                <Password>
+                    <PasswordInput>
+                        <div>비밀번호</div>
+                        <PasswordInputText type='password'/>
+                    </PasswordInput>
+                </Password>
+                <Button>
+                    <SigninButton>
+                        <button>로그인</button>
+                    </SigninButton>
+                    <SignupButton>
+                        <LinkStyled to='/SignUp'><button>회원가입</button></LinkStyled>
+                    </SignupButton>
+                    <SearchButton>
+                        <button>이메일, 비밀번호 찾기</button>
+                    </SearchButton>
+                </Button>
             </ModalWrapper>
         </ModalOverlay>
     )
 }
 
+// 모달 뒷 배경
 const ModalOverlay = styled.div`
     width: 100%;
     height: 100%;
@@ -56,9 +74,10 @@ const ModalOverlay = styled.div`
     background-color: rgba(0, 0, 0, 0.1);
 `;
 
+// 모달 창
 const ModalWrapper = styled.div`
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 700px;
     position: fixed;
     /* z-index: 1000; */
     border: 1px solid black;
@@ -69,10 +88,11 @@ const ModalWrapper = styled.div`
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 `;
 
+// 뒤로가기 버튼
 const CancelButton = styled.div`
     /* margin: 0; */
     /* padding: 0; */
@@ -83,6 +103,7 @@ const CancelButton = styled.div`
     justify-content: end;
 `;
 
+// 간편 로그인
 const KakaoSignIn = styled.div`
     
 `;
@@ -95,6 +116,7 @@ const KakaoSignInButton = styled.button`
     border-radius: 12px;
 `
 
+// - or -
 const Line = styled.div`
     width: 200px;
     display: flex;
@@ -124,20 +146,71 @@ const RightLine = styled.div`
     background-color: #dddfe4;
 `;
 
+// 이메일 입력
+const Email = styled.div`
+    
+`;
+
 const EmailInput = styled.div`
-    margin-bottom: 10px;
+    /* margin-top: 27px;
+    position: relative;
+    padding: 10px 0 11px;
+    border-bottom: 1px solid #dddfe4; */
+`;
+
+const EmailInputText = styled.input`
+    /* position: relative;
+    display: block;
+    cursor: pointer;
+    border: 0; */
+`;
+
+const EmailInputTextLabel = styled.label`
+    position: absolute;
+    color: rgb(127, 135, 143);
+    left: 0.5vw;
+    bottom: 0.8vh;
+    pointer-events: none;
+`;
+
+// 비밀번호 입력
+const Password = styled.div`
+    margin-top: 10px;
 `;
 
 const PasswordInput = styled.div`
     margin-bottom: 10px;
 `;
 
+const PasswordInputText = styled.input`
+    /* border-color: rgb(140, 186, 232); */
+    /* border-radius: 11px; */
+    /* border-width: 2px; */
+`;
+
+// 버튼
+const Button = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 const SigninButton = styled.div`
-    margin-bottom: 10px;
+
 `;
 
 const SignupButton = styled.div`
 
 `;
+
+const LinkStyled = styled(Link)`
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+`;
+
+const SearchButton = styled.div`
+    
+`
 
 export default SignInModal;
