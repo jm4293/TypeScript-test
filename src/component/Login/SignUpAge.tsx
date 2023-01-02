@@ -13,6 +13,7 @@ function SignUpAge() {
     const onClick = () => {
         const regBirth = /^(19[0-9][0-9]|20[0-2][0-9])(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
 
+
         // regBirth.test(birth)
         //     ? Number(birth.slice(0, 4)) < 2010
         //         ? navigate("/register/agree")
