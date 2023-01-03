@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import SignInModal from "./Login/SignInModal";
+import SignInModal from "./Login/RegisterModal";
 import ReorderIcon from '@mui/icons-material/Reorder';
 
 function Home(): React.ReactElement {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [navOpen, setNavOpen] = useState<boolean>(false);
 
   return (
     <Frame>
       <Header>
-        <LinkStyled to='/'>JM</LinkStyled>
+        <LinkStyled to='/'>JM4293</LinkStyled>
         <div style={{ flexGrow: "1" }}></div>
         <HeaderList>조회</HeaderList>
         <HeaderList>지도</HeaderList>
         <LinkStyled to='/register/age'>회원가입</LinkStyled>
-
         <HeaderList onClick={() => setModalOpen(true)}>로그인</HeaderList>
-        
-        <ReorderIconStyled />
+        <ReorderIconStyled onClick={() => { setNavOpen(!navOpen) }} />
+        {navOpen ? <NavDrop>123</NavDrop> : null}
       </Header>
 
       <Content>
@@ -32,6 +32,7 @@ function Home(): React.ReactElement {
         </AboutDiv>
         <ContactDiv>
           <div>CONTACT US</div>
+          <div>Phone: 010-4504-0629</div>
           <div>Email: dlwoals4293@gmail.com</div>
         </ContactDiv>
       </Footer>
@@ -40,7 +41,7 @@ function Home(): React.ReactElement {
 }
 
 const Frame = styled.div`
-  /* height: 5000px; */
+
 `;
 
 // 탑
@@ -53,7 +54,7 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   background-color: white;
-`
+`;
 
 const HeaderList = styled.div`
   margin-right: 10px;
@@ -69,7 +70,16 @@ const LinkStyled = styled(Link)`
 
 const ReorderIconStyled = styled(ReorderIcon)`
   cursor: pointer;
-`
+`;
+
+const NavDrop = styled.div`
+  border: 1px solid black;
+  height: 15vh;
+  width: 100%;
+  position: absolute;
+  /* display: none; */
+  top: 7vh;
+`;
 
 // 미드
 const Content = styled.div`
@@ -89,7 +99,7 @@ const Footer = styled.div`
   justify-content: end;
 `
 
-const AboutDiv =styled.div`
+const AboutDiv = styled.div`
   width: 30%;
 `
 

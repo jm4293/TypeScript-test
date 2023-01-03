@@ -1,8 +1,9 @@
 import GlobalStyle from "./GlobalStyle";
 import {Routes, Route} from "react-router-dom";
 import Home from "./component/Home";
-import SignUpAge from "./component/Login/SignUpAge";
-import SignUpAgree from "./component/Login/SignUpAgree";
+import RegisterAge from "./component/Login/RegisterAge";
+import RegisterAgree from "./component/Login/RegisterAgree";
+import RegisterSignUp from "./component/Login/RegisterSignUp";
 // import KakaoToken from "./component/Login/KakaoToken";
 
 function App() {
@@ -11,8 +12,9 @@ function App() {
             <GlobalStyle/>
             <Routes>
                 <Route path='/' element={<Home/>}/>
-                <Route path='/register/age' element={<SignUpAge/>}/>
-                <Route path='/register/agree' element={<SignUpAgree/>}/>
+                <Route path='/register/age' element={<RegisterAge/>}/>
+                <Route path='/register/agree' element={<RegisterAgree/>}/>
+                <Route path='/register/signup' element={<RegisterSignUp/>}/>
                 {/* <Route path='/kakao/callback' element={<KakaoToken/>} /> */}
             </Routes>
         </div>

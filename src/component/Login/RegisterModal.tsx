@@ -1,3 +1,7 @@
+// 
+// RegisterModal -> RegisterAge -> RegisterAgree
+//
+
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { KAKAO_AUTH_URL } from "./KakaoOAuth";
@@ -7,7 +11,7 @@ interface SignInModalProps {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function SignInModal({ setModalOpen }: SignInModalProps): React.ReactElement {
+function RegisterModal({ setModalOpen }: SignInModalProps): React.ReactElement {
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -26,7 +30,7 @@ function SignInModal({ setModalOpen }: SignInModalProps): React.ReactElement {
                 <div>
                     <KakaoSignIn>
                         <a href={KAKAO_AUTH_URL}>
-                            <KakaoSignInButton type="button"><img src="/images/kakao_login_medium_narrow.png" /></KakaoSignInButton>
+                            <KakaoSignInButton><img src="/images/kakao_login_medium_narrow.png" /></KakaoSignInButton>
                         </a>
                     </KakaoSignIn>
                 </div>
@@ -41,13 +45,13 @@ function SignInModal({ setModalOpen }: SignInModalProps): React.ReactElement {
                 <Email>
                     <EmailInput>
                         <div>이메일</div>
-                        <EmailInputText ref={inputRef} type='text'/>
+                        <input ref={inputRef} type='text' placeholder="이메일"/>
                     </EmailInput>
                 </Email>
                 <Password>
                     <PasswordInput>
                         <div>비밀번호</div>
-                        <PasswordInputText type='password'/>
+                        <input type='password' placeholder="비밀번호"/>
                     </PasswordInput>
                 </Password>
                 <Button>
@@ -55,10 +59,10 @@ function SignInModal({ setModalOpen }: SignInModalProps): React.ReactElement {
                         <button>로그인</button>
                     </SigninButton>
                     <SignupButton>
-                        <LinkStyled to='/SignUp'><button>회원가입</button></LinkStyled>
+                        <div>처음이세요? <Link to='/register/age'><span>회원가입하기</span></Link></div>
                     </SignupButton>
                     <SearchButton>
-                        <button>이메일, 비밀번호 찾기</button>
+                        <Link to='/find'><div>비밀번호를 잊으셨나요?</div></Link>
                     </SearchButton>
                 </Button>
             </ModalWrapper>
@@ -86,10 +90,10 @@ const ModalWrapper = styled.div`
     transform: translate(-50%, -50%);
     background-color: white;
     border-radius: 10px;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 `;
 
 // 뒤로가기 버튼
@@ -97,10 +101,10 @@ const CancelButton = styled.div`
     /* margin: 0; */
     /* padding: 0; */
     /* margin-right: 10px; */
-    padding-right: 10px;
+    /* padding-right: 10px; */
     width: 100%;
-    display: flex;
-    justify-content: end;
+    /* display: flex; */
+    /* justify-content: end; */
 `;
 
 // 간편 로그인
@@ -111,9 +115,10 @@ const KakaoSignIn = styled.div`
 const KakaoSignInButton = styled.button`
     border: none;
     padding: 0;
-    width: 100%;
-    height: 0;
+    /* width: 100%; */
+    height: 100%;
     border-radius: 12px;
+    cursor: pointer;
 `
 
 // - or -
@@ -190,9 +195,9 @@ const PasswordInputText = styled.input`
 
 // 버튼
 const Button = styled.div`
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
 `;
 
 const SigninButton = styled.div`
@@ -213,4 +218,4 @@ const SearchButton = styled.div`
     
 `
 
-export default SignInModal;
+export default RegisterModal;

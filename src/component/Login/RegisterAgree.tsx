@@ -1,32 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 interface checkList {
     id: number,
     title: string
 }
 
-function SignUpAgree() {
+function RegisterAgree() {
     const [checkItem, setCheckItem] = useState<number[]>([]);
+    const [isButton, setIsButton] = useState<boolean>(true);
+
+    useEffect(() => {
+        checkItem.includes(0) && checkItem.includes(1) ? setIsButton(false) : setIsButton(true);
+    }, [checkItem])
 
     const checkList: checkList[] = [
-        { id: 6, title: "선택 0" },
-        { id: 1, title: "선택 1" },
+        { id: 0, title: "필수 0" },
+        { id: 1, title: "필수 1" },
         { id: 2, title: "선택 2" },
         { id: 3, title: "선택 3" },
         { id: 4, title: "선택 4" },
         { id: 5, title: "선택 5" }
     ]
 
-    const CheckAll = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.checked)
-
-        if (e.target.checked === true) {
+    const checkAll = (checked: boolean) => {
+        if (checked) {
             const tempArray: number[] = []
             checkList.map((element, index) => {
                 return tempArray.push(element.id);
             })
-            console.log(tempArray)
             setCheckItem(tempArray);
         }
         else {
@@ -34,27 +37,40 @@ function SignUpAgree() {
         }
     }
 
+    const checkSingle = (checked: boolean, id: number) => {
+        if (checked) {
+            setCheckItem(prev => [...prev, id])
+        }
+        else {
+            setCheckItem(checkItem.filter((e) => e !== id));
+        }
+    }
+
+    const allow = () => {
+
+    }
+
     return (
         <Frame>
             <Layout>
                 <span>전체 동의</span>
-                <input type="checkbox" onChange={CheckAll} />
+                <input type="checkbox" onChange={(e) => checkAll(e.target.checked)} checked={checkItem.length === checkList.length ? true : false} />
                 {
                     checkList.map((element, index) => {
                         return (
                             <div key={index}>
                                 <span>{element.title}</span>
-                                <input type="checkbox" checked={checkItem.includes(element.id) ? true : false}/>
+                                <input type="checkbox" onChange={(e) => checkSingle(e.target.checked ,element.id)} checked={checkItem.includes(element.id) ? true : false} />
                             </div>
                         )
                     })
                 }
+                <Link to="/"><button>비동의</button></Link>
+                <Link to="/register/signup"><button onClick={allow} disabled={isButton}>동의</button></Link>
             </Layout>
         </Frame>
     )
 }
-
-export default SignUpAgree;
 
 const Frame = styled.div`
     background-color: rgb(243, 245, 247);
@@ -71,3 +87,5 @@ const Layout = styled.div`
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 `;
+
+export default RegisterAgree;
