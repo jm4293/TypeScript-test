@@ -18,6 +18,7 @@ app.get('/kakao/callback', async (req, res) => {
     const REST_API_KEY = "44fb0663d9f8993bedab1f709e654275";
     const REDIRECT_URI = "http://localhost:8000/kakao/callback";
     const KAKAO_CODE = req.query.code;
+    console.log(KAKAO_CODE)
 
     try {
         // 1. Access Token 가져오기
@@ -42,7 +43,7 @@ app.get('/kakao/callback', async (req, res) => {
             }
         });
         console.log("res2: " + res2);
-        res.send(res2.data);
+        res.send("1516");
 
         // 3. 사용자 고유번호를 가지고 왔는데 이거가지고 뭘 해야할지 모르겠음
     }

@@ -11,20 +11,34 @@
 
 
 - react-icons
-  - npm install react-icons --save
-  - version: 4.7.1
+    - npm install react-icons --save
+    - version: 4.7.1
 
 
 - react-router-dom
-  - npm install react-router-dom --save
-  - 6.6.1
+    - npm install react-router-dom --save
+    - 6.6.1
 
 
 - @mui/icons-material 
-  - npm install @mui/icons-material 
-  - version: 5.11.0
+    - npm install @mui/icons-material 
+    - version: 5.11.0
 
 
+- nodemon
+    - npm install nodemon
+    - version: 2.0.20
+
+
+- express
+    - npm install express
+    - version: 4.18.2
+
+
+- axios
+    - npm install axios
+    - version: 1.1.3
+    
 ## 실행 방법
 - npm start
 - nodemon server/server.js

@@ -1,10 +1,10 @@
-import GlobalStyle from "./GlobalStyle";
 import {Routes, Route} from "react-router-dom";
-import Main from "./component/Main";
+import Main from "./component/Main/Main";
 import RegisterAge from "./component/Login/RegisterAge";
 import RegisterAgree from "./component/Login/RegisterAgree";
 import RegisterSignUp from "./component/Login/RegisterSignUp";
 // import KakaoToken from "./component/Login/KakaoToken";
+import {createGlobalStyle} from "styled-components";;
 
 function App() {
     return (
@@ -20,5 +20,11 @@ function App() {
         </div>
     )
 }
+
+const GlobalStyle = createGlobalStyle`
+  body, h1, h2, h3, h4 {
+    margin: 0;
+  }
+`;
 
 export default App;
