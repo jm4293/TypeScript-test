@@ -4,12 +4,16 @@ import RegisterAge from "./component/Login/RegisterAge";
 import RegisterAgree from "./component/Login/RegisterAgree";
 import RegisterSignUp from "./component/Login/RegisterSignUp";
 // import KakaoToken from "./component/Login/KakaoToken";
-import {createGlobalStyle} from "styled-components";;
+import {createGlobalStyle} from "styled-components";
+
+import Test from "./component/Test";
+import Test1 from "./component/Test1";
 
 function App() {
     return (
-        <div>
+        <>
             <GlobalStyle/>
+            <Test/>
             <Routes>
                 <Route path='/' element={<Main/>}/>
                 <Route path='/register/age' element={<RegisterAge/>}/>
@@ -17,7 +21,7 @@ function App() {
                 <Route path='/register/signup' element={<RegisterSignUp/>}/>
                 {/* <Route path='/kakao/callback' element={<KakaoToken/>} /> */}
             </Routes>
-        </div>
+        </>
     )
 }
 

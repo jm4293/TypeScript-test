@@ -12,7 +12,7 @@ const Header = () => {
 
 const Frame = styled.div`
   width: 99vw;
-  height: 150px;
+  height: 100px;
   background-color: aquamarine;
   //border: 1px solid rebeccapurple;
 `;
